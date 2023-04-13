@@ -62,4 +62,9 @@ public class Titulo {
     public double retornaMediaDasAvaliacoes(){
         return somaDasAvaliacoes / totalDeAvaliacoes;
     }
+
+    @Override
+    public String toString() {
+        return "Titulo: " + this.getNome() + " (" + this.getAnoDeLancamento() + ")";
+    }
 }
