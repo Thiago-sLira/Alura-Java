@@ -4,9 +4,7 @@ import br.com.alura.screenmatch.modelos.Filme;
 import br.com.alura.screenmatch.modelos.Serie;
 import br.com.alura.screenmatch.modelos.Titulo;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 public class PrincipalListas {
     public static void main(String[] args) {
@@ -34,17 +32,20 @@ public class PrincipalListas {
 
         }
 
-        ArrayList<String> buscaPorArtista = new ArrayList<>();
+        List<String> buscaPorArtista = new LinkedList<>();
         buscaPorArtista.add("Adam Sandler");
         buscaPorArtista.add("Paula Fernandes");
         buscaPorArtista.add("Jackson Percy");
 
-        System.out.println(buscaPorArtista);
+//        System.out.println(buscaPorArtista);
 
         Collections.sort(buscaPorArtista);
-        System.out.println(buscaPorArtista);
+//        System.out.println(buscaPorArtista);
 
         Collections.sort(lista);
+//        System.out.println(lista);
+
+        lista.sort(Comparator.comparing(Titulo::getAnoDeLancamento));
         System.out.println(lista);
     }
 }
