@@ -1,5 +1,8 @@
 package br.com.alura.screenmatch.modelos;
 
+import br.com.alura.screenmatch.excecao.ErroDeConversaoDeAnoException;
+import com.google.gson.annotations.SerializedName;
+
 public class Titulo implements Comparable<Titulo>{
     private String nome;
     private int anoDeLancamento;
@@ -11,6 +14,17 @@ public class Titulo implements Comparable<Titulo>{
     public Titulo(String nome, int anoDeLancamento) {
         this.nome = nome;
         this.anoDeLancamento = anoDeLancamento;
+    }
+
+    public Titulo(TituloOmdb meuTituloOmdb) {
+        this.nome = meuTituloOmdb.title();
+
+        if (meuTituloOmdb.year().length() > 4) {
+            throw new ErroDeConversaoDeAnoException("Não consegui converter" +
+                    " porque tem mais de 4 caracteres");
+        }
+        this.anoDeLancamento = Integer.valueOf(meuTituloOmdb.year());
+        this.duracaoEmMinutos = Integer.valueOf(meuTituloOmdb.runtime().split(" ")[0]);
     }
 
     public String getNome() {
@@ -52,6 +66,7 @@ public class Titulo implements Comparable<Titulo>{
     public void exibeFichaTecnica() {
         System.out.println("Nome do filme: " + nome);
         System.out.println("Ano de lançamento: " + anoDeLancamento);
+        System.out.println("Duração em minutos: " + duracaoEmMinutos + "min");
     };
 
     public void avalia(double nota){
@@ -65,7 +80,7 @@ public class Titulo implements Comparable<Titulo>{
 
     @Override
     public String toString() {
-        return "Titulo: " + this.getNome() + " (" + this.getAnoDeLancamento() + ")";
+        return ("Titulo: " + this.getNome() + " (" + this.getAnoDeLancamento() + ") ") + "com duração de " + duracaoEmMinutos + " minutos";
     }
 
     @Override
