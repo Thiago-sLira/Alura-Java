@@ -7,7 +7,6 @@ public class Address {
     private String neighborhood;
     private String city;
     private String state;
-    private String number;
 
     public Address(
             String postalCode,
@@ -15,8 +14,7 @@ public class Address {
             String complement,
             String neighborhood,
             String city,
-            String state,
-            int number
+            String state
         ) {
         this.postalCode = postalCode;
         this.street = street;
@@ -24,17 +22,15 @@ public class Address {
         this.neighborhood = neighborhood;
         this.city = city;
         this.state = state;
-        this.number = String.valueOf(number);
     }
 
-    public Address(AddressRecord addressRecord, int number) {
+    public Address(AddressRecord addressRecord) {
         this.postalCode = addressRecord.cep();
         this.street = addressRecord.logradouro();
         this.complement = addressRecord.complemento();
         this.neighborhood = addressRecord.bairro();
         this.city = addressRecord.localidade();
         this.state = addressRecord.uf();
-        this.number = String.valueOf(number);
     }
 
     public String getPostalCode() {
@@ -61,19 +57,9 @@ public class Address {
         return state;
     }
 
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
     @Override
     public String toString() {
         return "Este endereço é referente ao CEP: " +
-                postalCode +
-                ", número: " +
-                number;
+                postalCode;
     }
 }
